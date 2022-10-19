@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Requisição XMLHttpRequest</title>
+</head>
+<body>
+    <h1>Imagens aleatórias de cachorros</h1>
+    <p>
+        A partir do click no botão abaixo uma nova imagem aleatória de cachorros será carregada utilizando Requisiçoês assícronadas com HMLHttpRequest </p>
+
+        <img id="img_dog" src="" alt="Aguardando a imagem ser carregada" />
+         <br/>
+         <button onclick="carregarImagens()">Carregar Imagens</button>
+</body>
+     
+     <script type="text/javascript">
+
+         function carregarImagens(){
+             var xmLHttpRequest = new XMLHttpRequest();
+             var url = "https://dog.ceo/api/breeds/image/random"
+             xmLHttpRequest.open('GET', url, true);
+             xmLHttpRequest.onreadystatechange = function(){
+                 if (xmLHttpRequest.readyState == 3){
+                     console.log('Carregando o conteúdo')
+                 }
+             
+                if (xmLHttpRequest.readyState == 4){
+                    var jsonresponse = JSON.parse(xmLHttpRequest.responseText);
+                    console.log('Requisição Finalizada');
+                    console.log('Resultado da Requisição');
+                    console.log('Resultado da Requisição');
+
+                    var imgDog = document.getElementById('img_dog');
+                    imgDog = jsonresponse.message;
+
+                }
+
+         };
+
+         xmLHttpRequest.send(null);
+
+         }
+     </script>
+     
+</html>
